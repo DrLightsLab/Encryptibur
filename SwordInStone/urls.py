@@ -17,6 +17,6 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^encryptibur/', include('Encryptibur.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^encryptibur/', include('Encryptibur.views.encryptibur.views.urls')),
 ]
