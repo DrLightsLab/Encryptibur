@@ -1,0 +1,7 @@
+/*
+**  This is the styles.css file for Django project.  This specific project is Encryptibur
+*/
+
+#background {
+  background: url("../images/encryptiburbackground.jpeg") no-repeat center center fixed;
+}
