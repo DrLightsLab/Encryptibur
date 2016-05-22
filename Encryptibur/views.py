@@ -25,6 +25,7 @@ def index(request):
 def get_aes_obj():
     # Note: Both the key and IV are required to be a multiple of 16 characters in length.  Need to decide what those are...
     # For now, using a value from a tutorial that I've found, so this NEEDS to be changed.
+    # Idea: Generate a 16 character encrypted and encoded value for what the key and IV should be.
     return AES.new('This is a key123', AES.MODE_CBC, 'This is an IV456')
 
 # TODO: Create padding method since all values need to be a multiple of 16 characters in length
@@ -33,8 +34,8 @@ def encrypt_value(value):
     encrypted = aes.encrypt(pad_value(value))
     return encrypted
 
-# This padding function isn't great.  I have to store the length of characters that padding uses to achieve a multiple of 16
-# in the database so that when I go to decrypt it, it knows what character to decrypt it with.  I should consider an alternative method
+# This padding function isn't great.  I have to store the length of characters that the padding method uses, to create a character length that has a multiple of 16,
+# in the database so that after it's been decrypted, it knows what character to depad it with.  I should consider an alternative method...
 # for a production type instance.
 def pad_value(value):
     length = 16 - (len(value) % 16)
@@ -46,7 +47,7 @@ def pad_value(value):
 def unpad_value(value, length):
     return value.strip(chr(length))
 
-# This function is for encoding the encrypted value to base64 since Django has issues encoding/decoding an AES encrypted string.
+# This function is for encoding the encrypted value to base64 since Django has issues encoding/decoding an AES encrypted string caused by the characters it uses to encrypt the value.
 def encode_value(value):
     return base64.b64encode(value)
 
