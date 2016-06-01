@@ -7,11 +7,11 @@ import json
 
 def login(request):
     user = {};
-    create_user(user);
-    return render_to_response('login.html', {'data' : data}, RequestContext(request))
+    #create_user(user);
+    return render_to_response('login.html', {'foo' : 'foo'}, RequestContext(request))
 
 def create_user(data):
-    user = User.objects.create_user(data.get_username()), data.get_email(), data.get_password())
+    user = User.objects.create_user(data.get_username(), data.get_email(), data.get_password())
     return data
 
 def validate_user(data):
