@@ -1,4 +1,0 @@
-#!/bin/bash
-
-findstring =
-pythonarray=('find ./${1})
