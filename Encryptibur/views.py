@@ -5,11 +5,11 @@ from Crypto.Cipher import AES
 import json
 import base64
 
-
 def index(request):
     foo = "moo"
     if request.method == 'GET':
         encrypted_foo = encrypt_value(foo)
+        print 'printing encrypted: %s ' % encrypted_foo
         encoded = encode_value(encrypted_foo)
         print encoded
         #return render(request, "encryptibur/stone.html", {'foo' : foo})
@@ -20,6 +20,7 @@ def index(request):
     else:
         return HttpResponse('Foo')
 
+# ad
 # This should be made into a class so that I can use a get method to retrieve the AES object, or at least I think it should... to decide later.
 # For now, we are simply going to use a function to create and return the AES object to whoever calls it
 def get_aes_obj():
