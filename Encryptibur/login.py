@@ -6,9 +6,12 @@ from django.contrib.auth.models import User
 import json
 
 def login(request):
-    user = {}
-    #create_user(user); upodate
-    return render_to_response('login.html', {'foo' : 'foo'}, RequestContext(request))
+    if request.method == 'GET':
+        return render_to_response('login.html', {}, RequestContext(request))
+    if request.method == 'POST':
+        print 'printing request', request
+        response = create_user(request)
+        return render_to_response('login.html', response, RequestContext(request))
 
 def create_user(data):
     user = User.objects.create_user(data.get_username(), data.get_email(), data.get_password())
