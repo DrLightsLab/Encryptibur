@@ -13,7 +13,7 @@ def login(request):
     if request.method == 'POST':
         print 'printing request', request
         response = create_user(request)
-        return render_to_response('login.html', response, RequestContext(request))
+        return render('login.html', response, RequestContext(request))
 
 def create_user(data):
     user = User.objects.create_user(data.get_username(), data.get_email(), data.get_password())
