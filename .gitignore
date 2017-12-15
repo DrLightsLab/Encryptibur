@@ -10,3 +10,4 @@ migrations/
 # Python #
 ################
 *.pyc
+settings.py
